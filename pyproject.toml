@@ -15,7 +15,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.6"
 requests = "^2.22.0"
-click = "^8.0.3"
+click = "^8.0.4"
 
 
 [tool.poetry.dev-dependencies]
