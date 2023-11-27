@@ -14,12 +14,12 @@ class Redash(object):
         except requests.exceptions.HTTPError:
             return False
 
-    def queries(self, page=1, page_size=25, only_favorites=False):
+    def queries(self, page=1, page_size=25, only_favorites=False, tags=[]):
         """GET api/queries"""
 
         target_url = "api/queries/favorites" if only_favorites else "api/queries"
 
-        return self._get(target_url, params=dict(page=page, page_size=page_size)).json()
+        return self._get(target_url, params=dict(page=page, page_size=page_size, tags=tags)).json()
 
     def create_favorite(self, _type: str, id):
         """POST to api/queries/<id>/favorite or api/dashboards/<id>/favorite"""
@@ -48,12 +48,12 @@ class Redash(object):
         """POST api/users/<user_id>/disable"""
         return self._post(f"api/users/{user_id}/disable").json()
 
-    def dashboards(self, page=1, page_size=25, only_favorites=False):
+    def dashboards(self, page=1, page_size=25, only_favorites=False, tags=[]):
         """GET api/dashboards"""
 
         target_url = "api/dashboards/favorites" if only_favorites else "api/dashboards"
 
-        return self._get(target_url, params=dict(page=page, page_size=page_size)).json()
+        return self._get(target_url, params=dict(page=page, page_size=page_size, tags=tags)).json()
 
     def get_dashboard(self, id):
         """GET api/dashboards/<id>"""
